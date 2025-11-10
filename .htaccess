@@ -1,0 +1,5 @@
+RewriteEngine On
+
+
+RewriteRule ^api/([a-zA-Z_]+)/([0-9]+)$ index.php?route=$1&id=$2 [L]
+RewriteRule ^api/([a-zA-Z_]+)$ index.php?route=$1 [L]
