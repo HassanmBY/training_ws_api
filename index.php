@@ -38,7 +38,8 @@ if ($route === "") {
 
 $idNameMapping = [
     "communes" => "commune_id",
-    "wifi_access_points" => "wifi_id"
+    "wifi_access_points" => "wifi_id",
+    "wifi_access_points_view" => "wifi_id"
 ];
 
 // Validate route
