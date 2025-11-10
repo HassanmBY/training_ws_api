@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 10 nov. 2025 à 15:00
+-- Généré le : lun. 10 nov. 2025 à 20:24
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -137,6 +137,32 @@ INSERT INTO `wifi_access_points` (`wifi_id`, `dataset_id`, `location_name`, `add
 (75, '88040a98691332227cffd76017f10a8ebbbe348e', 'Central d’Achats', 'Boulevard du Neuvième de Ligne 39', 1, 50.857249, 4.345635),
 (84, 'c87d044a36f6a5a499c53c19db37b517a0735b2c', 'Place Sainte-Catherine', 'Place Sainte-Catherine', 1, 50.850595, 4.347675),
 (85, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'Place Sainte-Catherine', 'Place Sainte-Catherine', 1, 50.850595, 4.347675);
+
+-- --------------------------------------------------------
+
+--
+-- Doublure de structure pour la vue `wifi_access_points_view`
+-- (Voir ci-dessous la vue réelle)
+--
+CREATE TABLE `wifi_access_points_view` (
+`wifi_id` int(11)
+,`dataset_id` varchar(255)
+,`location_name` varchar(255)
+,`address` varchar(255)
+,`commune_id` int(11)
+,`commune_name` varchar(100)
+,`latitude` decimal(9,6)
+,`longitude` decimal(9,6)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la vue `wifi_access_points_view`
+--
+DROP TABLE IF EXISTS `wifi_access_points_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `wifi_access_points_view`  AS SELECT `w`.`wifi_id` AS `wifi_id`, `w`.`dataset_id` AS `dataset_id`, `w`.`location_name` AS `location_name`, `w`.`address` AS `address`, `w`.`commune_id` AS `commune_id`, `c`.`name` AS `commune_name`, `w`.`latitude` AS `latitude`, `w`.`longitude` AS `longitude` FROM (`wifi_access_points` `w` left join `communes` `c` on(`w`.`commune_id` = `c`.`commune_id`)) ;
 
 --
 -- Index pour les tables déchargées
